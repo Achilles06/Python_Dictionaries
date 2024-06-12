@@ -72,4 +72,38 @@ def open_ticket(ticket_id, customer_name, issue_description):
         print(f"New ticket {ticket_id} opened for {customer_name}.")
     else:
         print(f"Ticket {ticket_id} already exists.")
+        def update_ticket_status(ticket_id, new_status):
+    if ticket_id in service_tickets:
+        service_tickets[ticket_id]["Status"] = new_status
+        print(f"Ticket {ticket_id} status updated to {new_status}.")
+    else:
+        print(f"Ticket {ticket_id} does not exist.")
+
+def display_tickets(filter_status=None):
+    print("Service Tickets:")
+    for ticket_id, details in service_tickets.items():
+        if filter_status is None or details["Status"] == filter_status:
+            print(f"{ticket_id}: {details['Customer']} - {details['Issue']}({details['Status']})")
+
+open_ticket("Ticket003", "Carol", "Network connectivity issue")
+update_ticket_status("Ticket001", "closed")
+display_tickets(filter_status="open")
+
+#4. Python Essentials for Business Analytics
+#Task 1: Sales Data Cloning and Modification
+import copy
+
+weekly_sales = {
+    "Week 1": {"Electronics": 12000, "Clothing": 5000, "Groceries": 7000},
+    "Week 2": {"Electronics": 15000, "Clothing": 6000, "Groceries": 8000}
+}
+
+copied_sales = copy.deepcopy(weekly_sales)
+
+copied_sales["Week 2"]["Electronics"] = 18000
+
+print("Original weekly_sales:")
+print(weekly_sales)
+print("\nCopied and modified weekly_sales:")
+print(copied_sales)
 
